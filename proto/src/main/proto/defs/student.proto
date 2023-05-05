@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package com.shopping.stubs.student;
+
+option java_package = "com.example.grpc";
+option java_multiple_files = true;
+
+service StudentService{
+  rpc getStudentDetails(GetStudentRequest) returns (StudentResponse);
+  rpc getAllStudentDetails(AllStudentRequest) returns (StudentResponse);
+  rpc createStudentDetails(CreateStudentRequest) returns (Student);
+}
+
+message AllStudentRequest{
+}
+
+message GetStudentRequest{
+  string name = 1;
+}
+message CreateStudentRequest{
+  Student student = 1;
+}
+message StudentResponse{
+  repeated Student students = 1;
+}
+message Student{
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+  Standard standard = 4;
+}
+enum Standard{
+  FIRST = 0;
+  SECOND = 1;
+  THIRD = 2;
+  FOURTH = 3;
+  FIFTH = 4;
+}
